@@ -45,6 +45,28 @@ Initialize the directory structure for our board:
 > pio project init --board heltec_wifi_kit_32
 ```
 
+### Build
+
+Clean, build and upload `main.cpp`:
+
+```
+> pio run -t clean
+> pio run -e heltec_wifi_kit_32 -t upload
+```
+
+Monitor the serial port at 9600/[8-N-1](https://en.wikipedia.org/wiki/8-N-1):
+
+```
+> pio device monitor
+```
+
+or
+
+```
+> screen /dev/tty.SLAB_USBtoUART 9600 cs8 -parenb cstopb
+> minicom -D /dev/tty.SLAB_USBtoUART -b 9600
+```
+
 
 ### Tests
 
@@ -122,10 +144,25 @@ Test    Environment         Status    Duration
 <img src="esp32-test.png" alt="blink test"
     title="blink test" width="480" />
 
+### Other
+
+```
+> ls -alt ~/.platformio/packages/
+> ls ~/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiType.h
+> ls ~/.platformio/packages/framework-espidf/components/esp_wifi/include/esp_wifi_types.h
+```
+
 ## References
 
 - https://docs.platformio.org/en/latest/boards/espressif32/heltec_wifi_kit_32.html
+- https://docs.platformio.org/en/latest/tutorials/espressif32/arduino_debugging_unit_testing.html
+- https://docs.platformio.org/en/latest/tutorials/espressif32/espidf_debugging_unit_testing_analysis.html
+- https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/wifi.html
 - https://github.com/HelTecAutomation/Heltec_ESP32
 - https://github.com/HelTecAutomation/Heltec_ESP32/blob/master/src/heltec.h
 - https://community.platformio.org/t/wifi-on-heltec-wifi-kit-32-not-compiling-found/8719
+- https://hackaday.io/project/172317-facelock-a-facial-recognition-door-lock/log/179056-initializing-http-client-and-send-requests-with-esp32
 - https://piolabs.com/blog/insights/next-generation-ide-for-decades.html
+- https://www.nordicsemi.com/Software-and-Tools/Development-Tools/nRF-Connect-for-desktop
+- https://apps.apple.com/us/app/nrf-connect-bluetooth-app/id1054362403
+- https://arduinojson.org
